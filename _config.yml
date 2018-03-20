@@ -16,7 +16,7 @@
 title: Khanh Pham
 email: khanh.phamdd@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Learning to share
+  Learn to share
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://pddkhanh.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: khanhpham31
