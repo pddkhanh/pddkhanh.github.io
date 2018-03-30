@@ -3,7 +3,7 @@ layout: post
 comments: true
 title:  "#til Retain cycle in inner closure"
 date:   2018-03-30 10:03:00 +0800
-categories: til programming tech
+categories: til programming
 tags: [swift, programming, rxdatasources]
 ---
 Take a look at below code, my *FeedViewController*, I use [RxDataSource][rxdatasources-gh] to bind data to *UITableView*, Inside the cell, I have button and use a closure callback to handle tap event.
