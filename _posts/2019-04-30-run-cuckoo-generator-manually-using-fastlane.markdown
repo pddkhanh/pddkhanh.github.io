@@ -82,3 +82,5 @@ echo "Mocks Input Directory = $INPUT_DIR"
 
 ## Result
 This helped us save almost 80s waiting for unnecessary mocks generating, every time running a test case.
+
+{% include footer.html %}
