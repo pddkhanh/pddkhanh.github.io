@@ -1,0 +1,42 @@
+---
+layout: post
+comments: true
+title:  "My goals for Q1 2020"
+date:   2020-01-03 23:00:00 +0800
+categories: self-improvement
+tags: [retrospective, goals]
+---
+
+Instead of setting goals for the whole year, I decided to do in smaller chunks to make this easier to do.
+
+Here are things that I'll do in the next 3 months (Q1 2020)
+
+### Learn English
+
+Here comes the most stubborn goal of my life so far. Every year I tell myself I want to speak English fluently but never put enough time and effort to learn and practice. I'll make learning English becomes a habit and try to fill up my daily life with English by:
+
+- Learn vocabulary, using the book **1100 words you need to know**. The lessons structured by weekly, 5 days per week and 5 words per day.
+- Listen to podcasts on my commute. My favorite shows are BBC Learning English (6 minutes, vocabulary, grammar), Optimal Living Daily (financial, health, relationship).
+- Read English books, blog posts, articles.
+- Practice pronunciation using ELSA Speak app.
+- Write daily journals in English.
+
+### Build some good daily habits
+
+- Wake up at 6 am.
+- Meditate.
+- Exercise at least 15 minutes. Pick one from yoga, walking, running, swimming, playing badminton, or just go to the gym in my condo.
+
+### Finance
+
+- Save and put at least $5000 to my investing account.
+- Come up with a passive investing plan and execute it consistently.
+- Continue to work on the SG4D+ app, release Big Sweep by end of January.
+
+### Other aspirational goals
+
+- Get the provisional driving license (PDL).
+- Arrange 1 outdoor activity for my team.
+- Have 1 sharing or workshop at work.
+- Have coffee with my former product manager.
+- Come up with a simple app idea, and implement a draft version using SwiftUI and Combine framework.
