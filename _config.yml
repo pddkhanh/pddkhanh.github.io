@@ -23,6 +23,9 @@ twitter_username: khanhpham31
 github_username:  pddkhanh
 google_analytics: UA-116697251-1
 
+disqus:
+  shortname: pddkhanh
+
 # Build settings
 markdown: kramdown
 theme: minima

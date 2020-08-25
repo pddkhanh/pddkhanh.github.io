@@ -5,8 +5,6 @@ title:  "Confession of a quitter"
 date:   2020-08-25 09:48:00 +0800
 categories: self-improvement
 tags: [retrospective, confession]
-disqus:
-    shortname: pddkhanh
 ---
 
 Last night, an article on Medium that enlightens me: [Read This If You Struggle With Finishing Things You Start](https://medium.com/@Jude.M/read-this-if-you-struggle-with-finishing-things-you-start-a0fdaa83aa6a). There are many things, projects that I used to feel enthusiastic to do, but never able to finish them. The main reason is I failed to keep commitment, and similar to the above author, I used excuses like: this is not worth doing anymore, or there is another thing that will be more valuable. 

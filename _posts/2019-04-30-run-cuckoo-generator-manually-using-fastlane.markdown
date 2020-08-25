@@ -5,8 +5,6 @@ title:  "Run Cuckoo Generator manually using Fastlane"
 date:   2019-04-30 15:08:00 +0800
 categories: til programming
 tags: [swift, programming, fastlane, cuckoo]
-disqus:
-    shortname: pddkhanh
 ---
 ## Problem
 My team is using [Cuckoo generator](https://github.com/Brightify/Cuckoo) to generate mock classes for unit testing. Currently, I observe that it takes very long (80 seconds) to run a unit test after made a small change in the code.
