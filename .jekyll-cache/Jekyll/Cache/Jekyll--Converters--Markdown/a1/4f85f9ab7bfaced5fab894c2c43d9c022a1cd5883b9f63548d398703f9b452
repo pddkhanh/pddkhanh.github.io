@@ -1,0 +1,103 @@
+I"<h2 id="problem">Problem</h2>
+<p>My team is using <a href="https://github.com/Brightify/Cuckoo">Cuckoo generator</a> to generate mock classes for unit testing. Currently, I observe that it takes very long (80 seconds) to run a unit test after made a small change in the code.</p>
+
+<h2 id="root-cause">Root cause</h2>
+<p>I followed <a href="https://github.com/Brightify/Cuckoo#1-installation">Cuckoo’documentation</a> when setting up for the project at first, by using the Run Script Build Phases. But when our code base getting bigger, it’s easy to get code conflicts of .xcodeproj file when everyone keeps adding more input files to the build phase. So I decided to:</p>
+<ul>
+  <li>Moved the content of the script inside the Build Phase to a separated <code class="language-plaintext highlighter-rouge">generate-mocks.sh</code> file and invoke that script file in the Build Phase.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">generate-mocks.sh</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/sh
+
+# Define the output file. 
+OUTPUT_FILE="$PROJECT_DIR/${PROJECT_NAME}Tests/GeneratedMocks.swift"
+echo "Generated Mocks File = $OUTPUT_FILE"
+
+INPUT_DIR="${PROJECT_DIR}/${PROJECT_NAME}"
+echo "Mocks Input Directory = $INPUT_DIR"
+
+# Generate mock files, include as many input files as you'd like to create mocks for.
+"${PODS_ROOT}/Cuckoo/run" generate --testable "$PROJECT_NAME" \
+--output "${OUTPUT_FILE}" \
+"$INPUT_DIR/SampleProtocol.swift" \
+"$INPUT_DIR/AnotherExampleProtocol.swift" \
+.... more files here
+</code></pre></div></div>
+
+<ul>
+  <li>Removed all the Input Files of the Build Phase.</li>
+</ul>
+
+<p>By doing these, when we want to add more files to generate mocks, we just need to update <code class="language-plaintext highlighter-rouge">generate-mocks.sh</code> file, and avoid conflict in the scary <em>.xcodeproj</em> file.</p>
+
+<p>But I didn’t know that the Input Files section to help Xcode determine to skip the Build Phase if there is no change the Input Files list.</p>
+
+<h2 id="solutions">Solutions</h2>
+<p>We can solve this by declaring all the files that need to generate mocks in Input Files of the Build Phase, but this will lead to easily get code conflict in .xcodeproj file.</p>
+
+<p>We’re already using <a href="https://fastlane.tools/">fastlane</a>, so I decided to use a lane to run Cuckoo Generator manually. The downside of this is, ya, you need to run it manually when needed.</p>
+
+<p>Fastfile</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  desc "Generate Mocks using Cuckoo"
+  lane :generate_mocks do 
+    Dir.chdir('..') do
+      project_dir = Dir.pwd
+      project_name = "ShopBack"
+      pods_root = Dir.pwd + "/Pods"
+      sh("./scripts/cuckoo-generate-mocks.sh \"#{project_dir}\" \"#{project_name}\" \"#{pods_root}\"")
+    end
+  end
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">generate-mocks.sh</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/sh
+
+# Read parameters
+PROJECT_DIR="$1"
+PROJECT_NAME="$2"
+PODS_ROOT="$3"
+
+# Define the output file. 
+OUTPUT_FILE="$PROJECT_DIR/${PROJECT_NAME}Tests/GeneratedMocks.swift"
+echo "Generated Mocks File = $OUTPUT_FILE"
+
+INPUT_DIR="${PROJECT_DIR}/${PROJECT_NAME}"
+echo "Mocks Input Directory = $INPUT_DIR"
+
+# Generate mock files, include as many input files as you'd like to create mocks for.
+"${PODS_ROOT}/Cuckoo/run" generate --testable "$PROJECT_NAME" \
+--output "${OUTPUT_FILE}" \
+"$INPUT_DIR/SampleProtocol.swift" \
+"$INPUT_DIR/AnotherExampleProtocol.swift" \
+.... more files here
+</code></pre></div></div>
+
+<h2 id="result">Result</h2>
+<p>This helped us save almost 80s waiting for unnecessary mocks generating, every time running a test case.</p>
+
+<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Khanh Pham</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Khanh Pham</li><li><a class="u-email" href="mailto:khanh.phamdd@gmail.com">khanh.phamdd@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/pddkhanh"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">pddkhanh</span></a></li><li><a href="https://www.twitter.com/khanhpham31"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">khanhpham31</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Personal blog</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+:ET

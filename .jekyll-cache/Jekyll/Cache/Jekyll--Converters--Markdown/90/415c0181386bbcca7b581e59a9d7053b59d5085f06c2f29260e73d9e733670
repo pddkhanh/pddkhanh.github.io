@@ -1,0 +1,3 @@
+I"<p>Take a look at below code, my <em>FeedViewController</em>, I use <a href="https://github.com/RxSwiftCommunity/RxDataSources">RxDataSource</a> to bind data to <em>UITableView</em>, Inside the cell, I have button and use a closure callback to handle tap event.</p>
+
+:ET

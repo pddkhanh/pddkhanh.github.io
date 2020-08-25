@@ -1,0 +1,3 @@
+I"<h2 id="problem">Problem</h2>
+<p>My team is using <a href="https://github.com/Brightify/Cuckoo">Cuckoo generator</a> to generate mock classes for unit testing. Currently, I observe that it takes very long (80 seconds) to run a unit test after made a small change in the code.</p>
+:ET
